@@ -88,9 +88,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # برای استفاده در تولید
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles") 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),  # مسیر به پوشه استاتیک
+    os.path.join(BASE_DIR, "static"), 
 ]
 
 LANGUAGE_CODE = "en-us"
