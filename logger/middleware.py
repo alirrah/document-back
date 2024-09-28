@@ -21,7 +21,7 @@ class LogMiddleware:
 
             try:
                 if response.status_code != 200:
-                    raise "Fail Request"
+                    raise ValueError("Fail Request")
 
                 user = User.objects.get(username=request.POST.get("username"))
                 message = (
@@ -51,7 +51,7 @@ class LogMiddleware:
             try:
                 auth_header = request.META.get("HTTP_AUTHORIZATION")
                 if not auth_header:
-                    raise "do not have token"
+                    raise ValueError("do not have token")
 
                 token = auth_header.split(" ")[1]
                 token = AccessToken(token)
