@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt.token_blacklist",
     "authentication",
     "hub",
+    "logger",
 ]
 
 REST_FRAMEWORK = {
@@ -43,6 +44,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    "logger.middleware.LogMiddleware",
 ]
 
 ROOT_URLCONF = "document.urls"
@@ -88,9 +90,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles") 
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"), 
+    os.path.join(BASE_DIR, "static"),
 ]
 
 LANGUAGE_CODE = "en-us"
