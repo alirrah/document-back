@@ -17,21 +17,10 @@ class LogMiddleware:
         user = None
         message = ""
 
-        if request.path == "/jwt/login/" and request.method == "POST":
+        if (
+            request.path == "/jwt/login/" or request.path == "/jwt/token/refresh/"
+        ) and request.method == "POST":
 
-            try:
-                if response.status_code != 200:
-                    raise ValueError("Fail Request")
-
-                user = User.objects.get(username=request.POST.get("username"))
-                message = (
-                    f"Status Code: {response.status_code} - {response.status_text}"
-                )
-
-            except:
-                message = f"Status Code: {response.status_code} - {response.status_text}\nData: {response.data}"
-
-        elif request.path == "/jwt/token/refresh/" and request.method == "POST":
             try:
                 token = RefreshToken(response.data.get("refresh"))
                 user_id = token["user_id"]
