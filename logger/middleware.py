@@ -48,6 +48,12 @@ class LogMiddleware:
                 user = User.objects.get(id=user_id)
                 message = f"Status Code: {response.status_code} - {response.status_text}\nDocument ID: {document_id}"
 
+                last_entry = LogEntry.objects.filter(
+                    path=request.path, user=None
+                ).last()
+                if last_entry and last_entry.message.startswith("Status Code: 401"):
+                    last_entry.delete()
+
             except:
                 message = f"Status Code: {response.status_code} - {response.status_text}\nDocument ID: {document_id}\nData: {response.data}"
 
